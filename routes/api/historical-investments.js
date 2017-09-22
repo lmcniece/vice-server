@@ -5,7 +5,13 @@ var HistoricalInvestment = require('../../models/HistoricalInvestment');
 
 module.exports = function (router) {
     router.get('/', function(req, res, next) {
-        HistoricalInvestment.findAll()
+        HistoricalInvestment.findAll({
+                order: [
+                    ['account', 'ASC'],
+                    ['year', 'ASC'],
+                    ['month', 'ASC'],
+                ],
+            })
             .then(function (result) {
                 if (!result) {
                     return res.json(404, 'Not found');
