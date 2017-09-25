@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize'),
     sequelize = require('../config/db').instance;
 
-var HistoricalInvestment = sequelize.define('HistoricalInvestment', {
+var accountRecord = sequelize.define('accountRecord', {
         year: Sequelize.INTEGER,
         month: Sequelize.INTEGER,
         balance_start: Sequelize.DECIMAL,        
@@ -11,11 +11,12 @@ var HistoricalInvestment = sequelize.define('HistoricalInvestment', {
         fees: Sequelize.DECIMAL,
         deposits: Sequelize.DECIMAL,
         withdrawals: Sequelize.DECIMAL,
-        account: Sequelize.STRING
+        account: Sequelize.STRING,
+        account_type: Sequelize.STRING
     }, {
         timestamps: false,
-        tableName: "historical_investments"
+        tableName: "account_records"
     })
 ;
 
-module.exports = HistoricalInvestment;
+module.exports = accountRecord;
