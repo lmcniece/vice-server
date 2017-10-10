@@ -5,31 +5,7 @@ var accountRecord = require('../../models/accountRecord');
 
 module.exports = function (router) {
     router.get('/', function(req, res, next) {
-        accountRecord.findAll({
-                order: [
-                    ['year', 'ASC'],
-                    ['month', 'ASC']
-                ]
-            })
-            .then(function (result) {
-                if (!result) {
-                    return res.json(404, 'Not found');
-                }
-                res.json({accountRecords: result});
-            })
-            .error(function (err) {
-                res.json(500, err.message);
-            });
-    });
-        
-    router.get('/:account', function(req, res, next) {
-        accountRecord.findAll({
-                where: {'account': req.param('account')},
-                order: [
-                    ['year', 'ASC'],
-                    ['month', 'ASC']
-                ]
-            })
+        accountRecord.findAll()
             .then(function (result) {
                 if (!result) {
                     return res.json(404, 'Not found');
